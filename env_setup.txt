@@ -1,0 +1,19 @@
+conda create --name project_3
+
+conda install python=3.7
+
+conda install jupyter notebook
+
+ipython kernel install --name project_3 --user
+
+conda install pandas
+
+conda install numpy
+
+conda install matplotlib
+
+conda install scipy
+
+conda install seaborn
+
+conda install scikit-learn
