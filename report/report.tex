@@ -94,7 +94,7 @@ from file with signups attributes and files with events. Our task was to select 
 \section*{Methods}
 
 \subsection*{Data preprocessing}
-First, we had to join together all events and signups tables. The problem was, that IDs in the signup table and all random tables were chosen randomly and there were not enough equal IDs in all tables to use inner join. So I decided to use outer join and replace all missing values with 0. Then I changed string boolean values to numerical and decompose $trial\_features$ columns into indicating columns of each of the trial features. This was used as a base dataset and was later modified for each problem as needed. In the case of both problems, I used simple random sampling to resample my data set in such a way that the data was not imbalanced anymore.
+First, I had to join together all events and signups tables. The problem was, that IDs in the signup table and all events tables were chosen randomly and there were not enough equal IDs in all tables to use inner join. So I decided to use outer join and replace all missing values with 0. Then I changed string boolean values to numerical and decompose $trial\_features$ columns into indicating columns of each of the trial features. This was used as a base dataset and was later modified for each problem as needed. In the case of both problems, I used simple random sampling to resample my data set in such a way that the data was not imbalanced anymore.
 
 \subsection*{Algorithms}
 
@@ -116,10 +116,10 @@ To evaluate all the models I used 10-fold cross-validation. Since the dataset we
 As the first problem, I wanted to answer the question of whether it is possible to predict whether a paying company will cancel a subscription and what are the main reasons for this.
 
 \subsection{Data preprocessing}
-From my base dataset, described in $Methods$ I removed $Country$ column and used only rows with companies that at some point started the subscription. I also added a column called $days\_since\_paying$. In this column were integers representing days between the time of the creation of the company and the start of the subscription. In the remaining dataset were 1156 companies that canceled subscriptions and 1794 that did not. With simple random sampling, I choose 1156 of not canceled so the dataset was balanced. Then I scaled all the data  between $0$ and $1$ using $MinMaxScaler$.Since there were so many problems with missing events data, I tried to run all algorithms on data with events columns and also on data without events columns. The results were still better, even with a so small number of events.    
+From my base dataset, described in $Methods$ I removed $Country$ column and used only rows with companies that at some point started the subscription. I also added a column called $days\_since\_paying$. In this column were integers representing days between the time of the creation of the company and the start of the subscription. In the remaining dataset were 1156 companies that canceled subscriptions and 1794 that did not. With simple random sampling, I choose 1156 of not canceled so the dataset was balanced. Then I scaled all the data  between $0$ and $1$ using $MinMaxScaler$.Since there were so many problems with missing events data, I tried to run all algorithms on data with events columns and also on data without events columns. The results were still better, even with a small number of events.    
 
 \subsection{Models}
-I trained four different models on previous different parameters to find the best possible one. All models were used from $sklearn$ library. SVM algorithm used kernel $linear$. KNN gave best results with $k=33$. Random Forest used $26$ decision trees in forest. For Naive Bayes I choose $GausianNB$ algorithm.
+I trained four different models on various different parameters to find the best possible one. All models were used from $sklearn$ library. SVM algorithm used kernel $linear$. KNN gave best results with $k=33$. Random Forest used $26$ decision trees in forest. For Naive Bayes I choose $GausianNB$ algorithm.
 
 \subsection{Evaluation and feature imnportance}
 We evaluated our models with a 10-fold cross-validation and accuracy score as the main scoring function. Since this was a binary classification problem the base score obtained with random guessing was $50\%$.
@@ -167,7 +167,7 @@ Models made a big improvement compared to base score of $50\%$. They are not per
 For the second problem I wanted to see if it is possible to predict which companies will start paying for Databoxs services. 
 
 \subsection{Data preprocessing}
-First I filtered the dataset and kept only the ones with an activated account. The purpose of this was to clean the data from those who came only once to see the page. This split dataset almost in half. Then I dropped $pql$ columns since I did not want to "cheat" and use an already made estimator from Databox. I also dropped columns $cancelled$ since this was a clear indicator that the company has been paying in the past. I considered using one-hot encoding to transform categorical column $country$ into numerical but decided to drop it instead. After all this filtering there were 49869 non-paying companies and  2933 paying companies. I considered filtering the data, even more, on only those who used the trial. This would reduce non-paying to 12772 and keep almost all paying with 2792. But later, while training models on both possible versions, it showed that $had\_trial$ feature was one of the best indicators, so I decided to keep it. Then I used simple random sampling to randomly choose 2792 non-paying companies that, together with 2792 paying, form a final dataset. Then I scaled the data with $MinmaxScaler$ such that all the values were between $0$ and $1$.
+First I filtered the dataset and kept only the ones with an activated account. The purpose of this was to clean the data from those who came only once to see the page. This split dataset almost in half. Then I dropped $pql$ columns since I did not want to "cheat" and use an already made estimator from Databox. I also dropped columns $cancelled$ since this was a clear indicator that the company has been paying in the past. I considered using one-hot encoding to transform categorical column $country$ into numerical but decided to drop it instead. After all this filtering there were 49869 non-paying companies and  2933 paying companies. I considered filtering the data, even more, on only those who used the trial. This would reduce non-paying to 12772 and keep almost all paying with 2792. But later, while training models on both possible versions, it showed that $had\_trial$ feature was one of the best indicators, so I decided to keep it. Then I used simple random sampling to randomly choose 2792 non-paying companies that, together with 2792 paying. This formed a final dataset. Then I scaled the data with $MinmaxScaler$ such that all the values were between $0$ and $1$.
 
 
 
@@ -183,7 +183,7 @@ As in problem 1 I used 10-fold cross-validation to validate models. Since the da
 \begin{figure}[h]\centering
 	\includegraphics[width=\linewidth, height=7cm]{problem_2_boxplot_all_data.png}
 	
-	\caption{\textbf{Boxplots of cross validation scores.} We can see, that again, Random Forest and SVM gave the best results. But in this Naive Bayes and even KNN gave pretty good results. All were far above a base score of $50\%$ and in the case of Random Forest and SVM even above $90\%$. }
+	\caption{\textbf{Boxplots of cross validation scores.} We can see, that again, Random Forest and SVM gave the best results. But in this Naive Bayes and even KNN gave pretty good results. All were far above a base score of $50\%$ and in the case of Random Forest and SVM even above $90\%$.Yellow line is median and green triangle is mean. }
 	\label{boxplot2}
 \end{figure}
 
