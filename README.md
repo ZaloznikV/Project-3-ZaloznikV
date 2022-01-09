@@ -11,6 +11,8 @@ Data should be extracted into the working directory for reproducibility.
 All the code is in jupyter notebook "predictive_modeling.ipynb". Just run it from start to finish to reproduce the results. 
 All additional details are listed at the beginning of the notebook.
 
+In repository are also some additional plots and calculations that were not included in report but were also calculated in the notebook.
+
 
 
 
