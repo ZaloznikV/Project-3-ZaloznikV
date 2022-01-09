@@ -6,7 +6,7 @@ I decided to try to find best possible models for problems:
 - can we predict if non-paying company will start paying?
 
  Data can be found [here](https://classroom.github.com/a/lNCqrUm1) and [here](https://drive.google.com/file/d/1xlBq18Ljh9fZ_o_KXaFuMe4fId9waS3G/view?usp=sharing).
-Data should be extracted into the working directory for reproducibility.
+Data should be extracted into the working directory into foled Data for reproducibility.
 
 All the code is in jupyter notebook "predictive_modeling.ipynb". Just run it from start to finish to reproduce the results. 
 All additional details are listed at the beginning of the notebook.
